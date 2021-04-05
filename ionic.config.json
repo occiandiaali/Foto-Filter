@@ -1,0 +1,7 @@
+{
+  "name": "foto-filter",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
