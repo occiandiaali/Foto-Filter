@@ -1,0 +1,9 @@
+"@capacitor/core": "2.4.7",
+"react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.2",
+
+    Dumbed down because of ionic/react-hooks
+    https://ionicframework.com/docs/react/your-first-app/3-saving-photos

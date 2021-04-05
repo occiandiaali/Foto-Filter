@@ -1,0 +1,10 @@
+ion-card-content {
+    height: 250px;
+    
+}
+
+#check-mark {
+    width: 25px;
+    height: 25px;
+    justify-self: center;
+}
