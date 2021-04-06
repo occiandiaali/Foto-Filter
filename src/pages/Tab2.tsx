@@ -1,4 +1,5 @@
-import { camera, checkmarkDoneOutline, trash, close } from 'ionicons/icons';
+import {useState} from 'react';
+import { camera, checkmarkDoneOutline, settings, thermometer, save, contrast, sunny, trash, close } from 'ionicons/icons';
 import { 
   IonContent, 
   IonHeader, 
@@ -8,6 +9,7 @@ import {
   IonItem,
   IonLabel,
   IonButton,
+  IonRange,
   IonCard,
   IonCardTitle,
   IonCardContent,
@@ -20,6 +22,7 @@ import {
   IonGrid,
   IonFabButton,
   IonFab,
+  IonFabList,
   IonIcon
  } from '@ionic/react';
  import { usePhotoGallery } from './../hooks/UsePhotoGallery';
@@ -28,10 +31,14 @@ import './Tab2.css';
 
 const Tab2: React.FC = () => {
   const { photos, takePhoto } = usePhotoGallery();
+  const [rangeValue, setRangeValue] = useState<{
+    lower: number;
+    upper: number;
+  }>({ lower: 0, upper: 0 });
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color="tertiary">
           <IonTitle>Gallery</IonTitle>
         </IonToolbar>
       </IonHeader>
@@ -82,47 +89,51 @@ const Tab2: React.FC = () => {
                 }
               </IonCardContent>
 
-              
-              <IonRadioGroup>
-              <IonRow>
+              <IonCardContent>
               <IonItem>
-          <IonLabel>Blur</IonLabel>
-          <IonRadio slot="start" value="blur" />
+          <IonRange value={0} min={0} max={100} color="success">
+          <IonIcon slot="start" size="small" icon={sunny}/>
+          <IonIcon slot="end" icon={sunny}/>
+          </IonRange>
         </IonItem>
 
-        <IonItem>
-          <IonLabel>GrayScale</IonLabel>
-          <IonRadio slot="start" value="grayscale" />
-        </IonItem>
-        </IonRow>
-        <IonRow>
               <IonItem>
-          <IonLabel>Hue Rotate</IonLabel>
-          <IonRadio slot="start" value="hue-r" />
+          <IonRange value={50} min={0} max={100} color="warning">
+          <IonIcon slot="start" size="small" icon={contrast}/>
+          <IonIcon slot="end" icon={contrast}/>
+          </IonRange>
         </IonItem>
 
-        <IonItem>
-          <IonLabel>Invert</IonLabel>
-          <IonRadio slot="start" value="inv" />
-        </IonItem>
-        </IonRow>
-              </IonRadioGroup>
               <IonItem>
-              <IonLabel>Tap Checkmark to SAVE</IonLabel>
-              <IonIcon icon={checkmarkDoneOutline} id="check-mark"/>
-              </IonItem>
+          <IonRange value={25} min={0} max={100} color="danger">
+          <IonIcon slot="start" size="small" icon={thermometer}/>
+          <IonIcon slot="end" icon={thermometer}/>
+          </IonRange>
+        </IonItem>
+
+        </IonCardContent>
+
             </>
 
             )
           }
         </IonCard>
-        
-        {/* <ExploreContainer name="Tab 2 page" /> */}
-        <IonFab vertical="bottom" horizontal="center" slot="fixed">
-    <IonFabButton onClick={() => takePhoto()}>
-      <IonIcon icon={camera}></IonIcon>
-    </IonFabButton>
-  </IonFab>
+        <IonFab horizontal="end" vertical="top" slot="fixed">
+          <IonFabButton color="primary">
+            <IonIcon icon={settings} />
+          </IonFabButton>
+          <IonFabList>
+          <IonFabButton onClick={() => takePhoto()} color="success">
+            <IonIcon icon={camera} />
+          </IonFabButton>
+          <IonFabButton color="warning">
+            <IonIcon icon={save} />
+          </IonFabButton>
+          <IonFabButton color="danger">
+            <IonIcon icon={trash} />
+          </IonFabButton>
+          </IonFabList>
+        </IonFab>
       </IonContent>
     </IonPage>
   );
